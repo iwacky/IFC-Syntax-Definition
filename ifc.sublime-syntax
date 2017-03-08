@@ -1,0 +1,59 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/
+name: IFC
+file_extensions: [ifc]
+scope: source.ifc
+contexts:
+  
+  main:
+    
+    # Comment
+    - match: '/\*'
+      push:
+        - meta_scope: comment.block.ifc
+        - match: '\*/'
+          pop: true
+    
+    # DATA
+    - match: '(?<=DATA;)'
+      push:
+        
+        # Identifier
+        - match: '[#][0-9]+'
+          scope: constant.numeric.ifc
+        
+        # Operator
+        - match: '[=]'
+          scope: keyword.operator.ifc
+        
+        # Class
+        - match: '[Ii][Ff][Cc][\w]+'
+          scope: entity.name.class.ifc
+        
+        # Enum
+        - match: '[\.][\w]+[\.]'
+          scope: entity.name.enum.ifc
+        
+        # Null
+        - match: '[\$\*]'
+          scope: constant.language.ifc
+        
+        # Logical
+        - match: '[\.][TtFfUu][\.]'
+          scope: storage.type.ifc
+        
+        # Number
+        - match: '[\-]?([0-9]+[\.]?|[\.][0-9]+|[0-9]+\.[0-9]+)(E[\-]?[0-9]+)?'
+          scope: storage.type.ifc
+        
+        # String
+        - match: "'"
+          push:
+            - meta_scope: string.quoted.single.ifc
+            - match: "'"
+              pop: true
+        
+        #ENDSEC
+        - match: '(?=ENDSEC;)'
+          pop: true
