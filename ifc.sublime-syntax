@@ -19,6 +19,13 @@ contexts:
     - match: '(?<=DATA;)'
       push:
         
+        # Comment
+        - match: '/\*'
+          push:
+            - meta_scope: comment.block.ifc
+            - match: '\*/'
+              pop: true
+        
         # Identifier
         - match: '[#][0-9]+'
           scope: constant.numeric.ifc
