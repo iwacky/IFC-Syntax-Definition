@@ -51,7 +51,7 @@ contexts:
           scope: storage.type.ifc
         
         # Number
-        - match: '[\-]?([0-9]+[\.]?|[\.][0-9]+|[0-9]+\.[0-9]+)(E[\-]?[0-9]+)?'
+        - match: '[\-]?([0-9]+[\.]?|[\.][0-9]+|[0-9]+\.[0-9]+)(E[+-]?[0-9]+)?'
           scope: storage.type.ifc
         
         # String
